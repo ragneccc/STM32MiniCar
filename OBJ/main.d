@@ -38,3 +38,5 @@
 ..\obj\main.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\main.o: ..\SYSTEM\sys\sys.h
 ..\obj\main.o: ..\SYSTEM\delay\delay.h
+..\obj\main.o: ..\HARDWERE\PWM\PWM.h
+..\obj\main.o: ..\HARDWERE\tumbler\tumbler.h
