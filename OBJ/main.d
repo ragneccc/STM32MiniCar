@@ -40,3 +40,4 @@
 ..\obj\main.o: ..\SYSTEM\delay\delay.h
 ..\obj\main.o: ..\HARDWERE\PWM\PWM.h
 ..\obj\main.o: ..\HARDWERE\tumbler\tumbler.h
+..\obj\main.o: ..\HARDWERE\ADC_ADXL335\ADC_ADXL335.H

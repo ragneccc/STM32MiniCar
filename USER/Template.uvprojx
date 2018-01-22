@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\FWLIB\inc;..\HARDWERE\PWM;..\HARDWERE\tumbler</IncludePath>
+              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\FWLIB\inc;..\HARDWERE\PWM;..\HARDWERE\tumbler;..\HARDWERE\ADC_ADXL335</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -657,6 +657,11 @@
               <FileName>tumbler.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWERE\tumbler\tumbler.c</FilePath>
+            </File>
+            <File>
+              <FileName>ADC_ADXL335.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWERE\ADC_ADXL335\ADC_ADXL335.c</FilePath>
             </File>
           </Files>
         </Group>
