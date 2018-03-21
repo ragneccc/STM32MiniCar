@@ -52,6 +52,16 @@
 #define IN3		PDout(10)
 #define IN4 	PDout(11)
 
+
+
+void MOTOR_Config_Init(void);
+/*
+|函数名称：MOTOR_Config
+|函数功能：初始化电机
+|函数形参：无
+|返回值特性：无
+*/
+
 void Set_Motor(s32 left_wheel,s32 right_wheel);              //左右四个电机控制
 /*
 |函数名称：Set_Motor
@@ -80,13 +90,7 @@ void MOTOR_Direct_Config(void);
 |返回值特性：无
 */
 
-void MOTOR_Config(void);
-/*
-|函数名称：MOTOR_Config
-|函数功能：初始化电机
-|函数形参：无
-|返回值特性：无
-*/
+
 
 void MOTOR_Direct_Control(u8 Which_Side,u8 Direct);
 /*
@@ -95,10 +99,6 @@ void MOTOR_Direct_Control(u8 Which_Side,u8 Direct);
 |函数形参：
 left_wheel, 左轮  
 right_wheel,右轮
-
-|返回值特性：
-GPIOD5_D6控制左侧left电机转的方向     D8=1，D10=0前转  D8=0，D10=1后转
-GPIOD7_D8控制右侧right电机转的方向    D9=1，D11=0前转  D9=0，D11=1后转
 */
 
 

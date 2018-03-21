@@ -6,7 +6,9 @@
 //#include "compassGY273.h"	//指南针
 //#include "QMCGY273.h"			//指南针国产
 #include "myIIc.h"				//模拟IIC
-
+#include "TIMDataCollect.h"
+#include "staticData.h"		//静态数据表格
+#include "workingData.h"	//动态数据表格
 
 /********************************************/
 
@@ -22,16 +24,19 @@ int main(void)
 			delay_ms(100);			//等待稳定
 	
 /**************模块初始化*********************/
-			MOTOR_Config();			//电机初始化
-			mpu6050_Init();
+			MOTOR_Config_Init();			//电机初始化
+			//mpu6050_Init();
 			//QMCGY273_Init();
 			//compassGY273Init();
 	
 	delay_ms(300);	//等待稳定
 	
+	
+	
 /***************逻辑部分**********************/
 	while(1){
-		printf("begin\n");
+		working_v++;
+		printf("%dbegin\n",working_v);
 		printf("end\n");
 		delay_ms(500);delay_us(500);
 	}

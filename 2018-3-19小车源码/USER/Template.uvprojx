@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\FWLIB\inc;..\HARDWERE\motor;..\HARDWERE\mpu6050;..\HARDWERE\compassGY273;..\HARDWERE\myIIC;..\HARDWERE\Gray_8</IncludePath>
+              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\FWLIB\inc;..\HARDWERE\motor;..\HARDWERE\mpu6050;..\HARDWERE\compassGY273;..\HARDWERE\myIIC;..\HARDWERE\Gray_8;..\LOGIC\staticData;..\LOGIC\workingData;..\HARDWERE\carBaseMoves;..\LOGIC\TIMDataCollect</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -406,77 +406,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>USER</GroupName>
+          <GroupName>CORE</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\stm32f4xx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>system_stm32f4xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\system_stm32f4xx.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>HARDWERE</GroupName>
-          <Files>
-            <File>
-              <FileName>motor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWERE\motor\motor.c</FilePath>
-            </File>
-            <File>
-              <FileName>mpu6050.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWERE\mpu6050\mpu6050.c</FilePath>
-            </File>
-            <File>
-              <FileName>compassGY273.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWERE\compassGY273\compassGY273.c</FilePath>
-            </File>
-            <File>
-              <FileName>myIIC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWERE\myIIC\myIIC.c</FilePath>
-            </File>
-            <File>
-              <FileName>QMCFY273.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWERE\compassGY273\QMCFY273.c</FilePath>
-            </File>
-            <File>
-              <FileName>gray.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWERE\Gray_8\gray.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>SYSTEM</GroupName>
-          <Files>
-            <File>
-              <FileName>delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\SYSTEM\delay\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>sys.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\SYSTEM\sys\sys.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\SYSTEM\usart\usart.c</FilePath>
+              <FileName>startup_stm32f40_41xxx.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\CORE\startup_stm32f40_41xxx.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -661,12 +596,102 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>CORE</GroupName>
+          <GroupName>SYSTEM</GroupName>
           <Files>
             <File>
-              <FileName>startup_stm32f40_41xxx.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\CORE\startup_stm32f40_41xxx.s</FilePath>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SYSTEM\delay\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>sys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SYSTEM\sys\sys.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SYSTEM\usart\usart.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>HARDWERE</GroupName>
+          <Files>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWERE\motor\motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>mpu6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWERE\mpu6050\mpu6050.c</FilePath>
+            </File>
+            <File>
+              <FileName>compassGY273.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWERE\compassGY273\compassGY273.c</FilePath>
+            </File>
+            <File>
+              <FileName>myIIC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWERE\myIIC\myIIC.c</FilePath>
+            </File>
+            <File>
+              <FileName>QMCFY273.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWERE\compassGY273\QMCFY273.c</FilePath>
+            </File>
+            <File>
+              <FileName>gray.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWERE\Gray_8\gray.c</FilePath>
+            </File>
+            <File>
+              <FileName>carBaseMoves.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWERE\carBaseMoves\carBaseMoves.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>LOGIC</GroupName>
+          <Files>
+            <File>
+              <FileName>staticData.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LOGIC\staticData\staticData.c</FilePath>
+            </File>
+            <File>
+              <FileName>workingData.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LOGIC\workingData\workingData.c</FilePath>
+            </File>
+            <File>
+              <FileName>TIMDataCollect.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LOGIC\TIMDataCollect\TIMDataCollect.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>USER</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stm32f4xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32f4xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\system_stm32f4xx.c</FilePath>
             </File>
           </Files>
         </Group>

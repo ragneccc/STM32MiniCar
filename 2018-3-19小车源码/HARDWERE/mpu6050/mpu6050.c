@@ -1,12 +1,14 @@
 #include "mpu6050.h"
 #include "sys.h"
 #include "usart.h"
+#include "workingData.h"
 //mpu6050模块通过串口发送角度等数据，本程序负责接收
 //本文件包含初始化usart6 和 相关中断函数
 
 //	全局变量 = USART_ReceiveData(USART6);
 
-u16 res;
+u8 res[2]={0,0},ojbk=0;
+u8 BUF[4]={0,0};
 void mpu6050_Init()
 {
 	GPIO_InitTypeDef  GPIO_InitStructure;
@@ -64,11 +66,16 @@ void mpu6050_Init()
 
 void USART6_IRQHandler(void)
 	{
-		u8 res;
 		if(USART_GetITStatus(USART6,USART_IT_RXNE))
 			{
-				res=USART_ReceiveData(USART6);	//接收函数
-				USART_SendData(USART6, res);		//串口发送
+				res[ojbk]=USART_ReceiveData(USART6);	//接收函数
+				ojbk=(ojbk+1)%2;
+				if((res[0]==55&res[1]==53)|(res[0]==53&res[1]==55))
+				{
+						
+					
+				}
+				//USART_SendData(USART6, res1);		//串口发送
 			}
 
 	}
