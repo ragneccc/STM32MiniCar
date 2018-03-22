@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\FWLIB\inc;..\HARDWERE\motor;..\HARDWERE\mpu6050;..\HARDWERE\compassGY273;..\HARDWERE\myIIC;..\HARDWERE\Gray_8;..\LOGIC\staticData;..\LOGIC\workingData;..\HARDWERE\carBaseMoves;..\LOGIC\TIMDataCollect</IncludePath>
+              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\FWLIB\inc;..\HARDWERE\motor;..\HARDWERE\compassGY273;..\HARDWERE\myIIC;..\HARDWERE\Gray_8;..\LOGIC\staticData;..\LOGIC\workingData;..\HARDWERE\carBaseMoves;..\LOGIC\TIMDataCollect;..\HARDWERE\blance_usart6</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -624,11 +624,6 @@
               <FilePath>..\HARDWERE\motor\motor.c</FilePath>
             </File>
             <File>
-              <FileName>mpu6050.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWERE\mpu6050\mpu6050.c</FilePath>
-            </File>
-            <File>
               <FileName>compassGY273.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWERE\compassGY273\compassGY273.c</FilePath>
@@ -652,6 +647,11 @@
               <FileName>carBaseMoves.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWERE\carBaseMoves\carBaseMoves.c</FilePath>
+            </File>
+            <File>
+              <FileName>blance_Usart6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWERE\blance_usart6\blance_Usart6.c</FilePath>
             </File>
           </Files>
         </Group>

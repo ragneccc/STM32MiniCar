@@ -1,7 +1,7 @@
 #include "stm32f4xx.h"		//顶层头文件
 #include "usart.h"				//串口1 （可以使用printf）
 #include "delay.h"	
-#include "mpu6050.h"			//串口6
+#include "blance_Usart6.h"			//串口6
 #include "motor.h"				//电机
 //#include "compassGY273.h"	//指南针
 //#include "QMCGY273.h"			//指南针国产
@@ -25,19 +25,35 @@ int main(void)
 	
 /**************模块初始化*********************/
 			MOTOR_Config_Init();			//电机初始化
-			//mpu6050_Init();
+			blance_Usart6_Init();
 			//QMCGY273_Init();
 			//compassGY273Init();
 	
-	delay_ms(300);	//等待稳定
 	
-	
+
 	
 /***************逻辑部分**********************/
-	while(1){
-		working_v++;
-		printf("%dbegin\n",working_v);
-		printf("end\n");
-		delay_ms(500);delay_us(500);
+	
+	delay_ms(300);	//等待稳定
+while(1){
+		delay_ms(500);
+		
+		
+/***************************测试代码***********************************/
+
+
+		/*****测试1 通过串口6获得小车倾斜的方向角度	取值0~360*********/
+//		printf("%d\t",working_Blance_Angle_X);
+//		printf("%dend\n",working_Blance_Angle_Y);
+//		get_balance_Angle();		更新数据 working_Blance_Angle_X、working_Blance_Angle_Y
+		
+		
+		
+		/*****测试2 通过串口6获得小车倾斜的方向角度	取值0~360*********/
+		
+		
+
+/****************************测试代码结束*******************************/
+		delay_ms(500);
 	}
 }

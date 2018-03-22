@@ -20,10 +20,10 @@
 
 
 /********************************基本状态**********************************/
-extern s32 working_v;							//当前速度
-extern u16 working_Angle;					//当前小车角度
-
-
+extern s32 working_v;							//当前速度	no
+extern u16 working_Angle;					//当前小车角度 no
+extern u16 working_Blance_Angle_X;				//水平方向x轴角度（倾斜）ok
+extern u16 working_Blance_Angle_Y;				//水平方向y轴角度（倾斜）ok
 /******************************************************************/
 
 
