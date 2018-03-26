@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\FWLIB\inc;..\HARDWERE\motor;..\HARDWERE\compassGY273;..\HARDWERE\myIIC;..\HARDWERE\Gray_8;..\LOGIC\staticData;..\LOGIC\workingData;..\HARDWERE\carBaseMoves;..\LOGIC\TIMDataCollect;..\HARDWERE\blance_usart6</IncludePath>
+              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\FWLIB\inc;..\HARDWERE\motor;..\HARDWERE\compassGY273;..\HARDWERE\myIIC;..\HARDWERE\Gray_8;..\HARDWERE\carBaseMoves;..\HARDWERE\blance_usart6;..\LOGIC\staticData;..\LOGIC\workingData;..\LOGIC\TIMDataCollect;..\Try\run</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -702,6 +702,21 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>..\readme.txt</FilePath>
+            </File>
+            <File>
+              <FileName>readme2.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\readme2.txt</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Try</GroupName>
+          <Files>
+            <File>
+              <FileName>run.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Try\run\run.c</FilePath>
             </File>
           </Files>
         </Group>

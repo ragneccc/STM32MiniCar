@@ -1,4 +1,4 @@
-#include "blance_Usart6.h"
+#include "blance_6axle_Usart6.h"
 #include "sys.h"
 #include "usart.h"
 #include "workingData.h"
@@ -7,10 +7,19 @@
 
 
 
-//	全局变量 = USART_ReceiveData(USART6);
-u8 bufg61_i=0,BUF_G61_usart6[11],BUF_G61_usart6Ture[4];
+//全局变量
 
-void blance_Usart6_Init()
+u8 BUF_6axle[11];
+/****************************************************************************
+函数名				：blance_6axle_Usart6_Init	初始化串口6
+参数				：void			
+返回				：void
+描述				：初始化波特率中断等。。
+创建人				：ragne
+创建日期			：2018年3月26日14:07:54
+最新更改时间	：2018年3月26日14:09:24
+****************************************************************************/
+void blance_6axle_Usart6_Init()
 {
 	GPIO_InitTypeDef  GPIO_InitStructure;
 	USART_InitTypeDef USART_InitStructure;
@@ -36,7 +45,7 @@ void blance_Usart6_Init()
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
   GPIO_Init(GPIOG, &GPIO_InitStructure);
 	
-	USART_InitStructure.USART_BaudRate=115200;
+	USART_InitStructure.USART_BaudRate=9600;
 	USART_InitStructure.USART_HardwareFlowControl=USART_HardwareFlowControl_None;	//数据流
 	USART_InitStructure.USART_Mode=USART_Mode_Rx|USART_Mode_Tx;//使能发送接收
 	USART_InitStructure.USART_Parity=USART_Parity_No;					//校验位
@@ -66,25 +75,25 @@ void blance_Usart6_Init()
 }
 
 /****************************************************************************
-函数名				：get_balance_Angle	更新仰角和倾斜角
+函数名				：get_balance_Angle	更新仰角和倾斜角、偏向角
 参数				：void				
 返回				：void
-描述				：处理数据 并更新至数据库working_Data.文件内
+描述				：处理角度数据 并更新至数据库working_Data.文件内
 创建人				：ragne
-创建日期			：2018年3月22日14:59:31
-最新更改时间	：2018年3月26日15:16:51
+创建日期			：2018年3月26日14:07:54
+最新更改时间	：
 ****************************************************************************/
-void get_balance_Angle()
+void get_balance_6axle_Angle()
 {
-	if(BUF_G61_usart6[1]==0x53&&BUF_G61_usart6[6]==0x00&&BUF_G61_usart6[7]==0x00
-														&&BUF_G61_usart6[8]==0x00&&BUF_G61_usart6[9]==0x00)
+	if(		1)		//校验位校验
 	{	
 					
-		working_Blance_Angle_X=(u16)(((BUF_G61_usart6Ture[1]<<8)|BUF_G61_usart6Ture[0])/182);//(32768/180=180.04)
+		working_Blance_Angle_X=(u16)(((BUF_6axle[3]<<8)|BUF_6axle[2])/182);//(32768/180=180.04)
 														//滚转角（x 轴） Roll=((RollH<<8)|RollL)/32768*180(°)
-		working_Blance_Angle_Y=(u16)(((BUF_G61_usart6Ture[3]<<8)|BUF_G61_usart6Ture[2])/182);
+		working_Blance_Angle_Y=(u16)(((BUF_6axle[5]<<8)|BUF_6axle[4])/182);
 														//俯仰角（y 轴） Pitch=((PitchH<<8)|PitchL)/32768*180(°)
-
+		working_Blance_Angle_Z=(u16)(((BUF_6axle[7]<<8)|BUF_6axle[6])/182);
+														//偏航角（z 轴） Yaw=((YawH<<8)|YawL)/32768*180(°)
 	}
 }
 
@@ -92,48 +101,48 @@ void get_balance_Angle()
 函数名				：			串口6中断服务函数
 参数				：void				
 返回				：void
-描述				：收集以0x55开头为长11字节存于数组 BUF_G61_usart6[11] 中
+描述				：收集有用数据并保存至BUF_6axle[]内以便于进一步处理
 创建人				：ragne
-创建日期			：2018年3月22日14:53:35
-最新更改时间	：2018年3月26日14:01:07
+创建日期			：2018年3月26日14:07:41
+最新更改时间	：
 ****************************************************************************/
+void USART6_IRQHandler(void)
+	{
+		static u16 axle6_i=0;	//声明静态变量用于计数
+		// BUF_6axle[]
+/*=======================6轴模块的中断函数========================*/
+		if(USART_GetITStatus(USART6,USART_IT_RXNE))
+			{
+				if(axle6_i<2)
+					{
+							BUF_6axle[axle6_i]=USART_ReceiveData(USART6);	//接收函数
+							axle6_i++;
+					}
+				else
+					{
+							if(BUF_6axle[0]!=0x55||BUF_6axle[1]!=0x53)
+								{
+											if(BUF_6axle[1]==0x55)
+											{
+												BUF_6axle[0]=0x55;
+												axle6_i=1;
+											}
+											else
+											{
+												axle6_i=0;
+											}
+								}
+							else
+								{
+											BUF_6axle[axle6_i]=USART_ReceiveData(USART6);
+											axle6_i=(axle6_i+1)%11;
+								}
+					}
+				//USART_ReceiveData(USART6);	//接收函数
+				//USART_SendData(USART6, res1);		//串口发送
+			}
 
-				//==========另：6轴程序和3轴程序只能使用一个，不可同时使用（串口6资源冲突）
-			
-//void USART6_IRQHandler(void)
-//	{
-//		if(USART_GetITStatus(USART6,USART_IT_RXNE))
-//			{
-//				if(!bufg61_i)
-//					{
-//						BUF_G61_usart6[0]=USART_ReceiveData(USART6);	//接收函数
-//						bufg61_i++;
-//					}
-//				else
-//					{
-//						if(BUF_G61_usart6[0]!=0x55)
-//							{
-//									bufg61_i=0;
-//							}
-//						else
-//							{
-//									BUF_G61_usart6[bufg61_i]=USART_ReceiveData(USART6);
-//								if(bufg61_i==10)
-//									{
-//											u8 i;
-//											for(i=2;i<=5;i++)
-//											{
-//													BUF_G61_usart6Ture[i-2]=BUF_G61_usart6[i];
-//											}
-//									}
-//									bufg61_i=(bufg61_i+1)%11;
-//							}
-//					}
-//				//USART_ReceiveData(USART6);	//接收函数
-//				//USART_SendData(USART6, res1);		//串口发送
-//			}
-
-//	}
+	}
 
 
 

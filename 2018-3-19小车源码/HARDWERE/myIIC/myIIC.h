@@ -31,3 +31,11 @@ u8 IICreadAByte(void);				//单子接读取
 
 
 #endif
+
+
+
+
+
+
+
+
