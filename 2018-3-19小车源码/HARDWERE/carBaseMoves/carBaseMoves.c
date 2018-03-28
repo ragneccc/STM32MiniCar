@@ -1,6 +1,5 @@
 #include "carBaseMoves.h"
-
-
+#include "math.h"
 
 
 /**********************************************************************待调整
@@ -46,7 +45,7 @@ void car_TurnToAngle(u16 goal_Angle)
 	}
 	while(1)			//扫描车是否转弯完毕
 	{
-			if(ture_Angle(goal_Angle))	//角度正确
+			if(cos((goal_Angle-working_Angle)/57.3)>cos(5/57.3))	//角度正确
 			{
 					Set_Motor(0,0);
 					break;
@@ -54,6 +53,7 @@ void car_TurnToAngle(u16 goal_Angle)
 			else												//角度不正确,继续扫描
 			{
 					delay_us(50);	//词句不知道有没有用
+					get_balance_6axle_Angle();	//要确保定时器中断定时更新角度值
 			}
 			//可在这里添加判断条件时间过长跳出函数（产生：迷路，错误，bug）
 	}
@@ -73,33 +73,13 @@ void car_TurnToAngle(u16 goal_Angle)
 ***********************************************************************/
 u8 ture_Angle(u16 goal_Angle)
 {
-	//working_Angle				当前角度
-	//goal_Angle					目标角度
-	//working_FalseAngle	允许角度偏差
-	if(goal_Angle>(360-static_FalseAngle))
+	if(cos((goal_Angle-working_Angle)/57.3)>cos(5/57.3))
 	{
-			//(goal_Angle+360-static_FalseAngle)<=(working_Angle+360
-			if(			(working_Angle<=((goal_Angle+static_FalseAngle)%360))
-					||(	(working_Angle+360)>=(goal_Angle+360-static_FalseAngle)	)		)
-			{
-					return 1;		//角度在目标内
-			}
-			else
-			{
-					return 0;
-			}
+			return 1;
 	}
 	else
-	{	
-			if(			(working_Angle<=(goal_Angle+static_FalseAngle))
-					&&(	(working_Angle+360)>=(goal_Angle+360-static_FalseAngle)	)		)
-			{
-					return 1;		//角度在目标内
-			}
-			else
-			{
-					return 0;
-			}
+	{
+			return 0;
 	}
 }
 

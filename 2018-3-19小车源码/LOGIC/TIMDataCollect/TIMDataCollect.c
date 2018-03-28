@@ -51,7 +51,11 @@ void TIMDataCollect_IRQ_Init(u16 arr,u16 psc)
 ！！！：遗留问题：3已经被占用；函数待编写
 ***********************************************************************/
 void TIM3_IRQHandler(void)
-{
-	//待编写
+{	
+	if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET) //溢出中断
+	{
+			get_balance_6axle_Angle();		//当前角度值更新
+	}
+	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);  //清除中断标志位
 }
 

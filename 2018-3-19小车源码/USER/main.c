@@ -2,6 +2,7 @@
 #include "usart.h"							//串口1 （可以使用printf）
 #include "delay.h"							//滴答延时
 #include "myIIc.h"							//模拟IIC
+#include "DMA.h"									//dma用于接收传感器数据
 #include "blance_Usart6.h"				//串口6	3轴的头文件
 #include "blance_6axle_usart6.h"	//串口6 6轴的头文件		通常只和 3轴的头文件使用其中一个（串口6资源冲突）
 #include "motor.h"							//电机

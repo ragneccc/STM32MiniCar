@@ -9,6 +9,7 @@
 #include "gray.h"
 #include "staticData.h"
 #include "workingData.h"
+#include "blance_6axle_usart6.h"
 
 /***********************∫Í∂®“Â**************************/
 
