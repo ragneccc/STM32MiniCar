@@ -14,10 +14,10 @@
 #include "TIMDataCollect.h"			//定时更新数据库
 #include "staticData.h"					//静态数据表格
 #include "workingData.h"				//动态数据表格
+#include "carBaseMoves.h"
 /*==============头文件引用尽量不动=========================*/
 
-
-
+u8 i=0;
 int main(void)
 {
 	
@@ -27,30 +27,34 @@ int main(void)
 			uart_init(115200);	//串口1初始化									PA9		PA10
 			IICInit();					//IIC初始化函数								PB8		PB9
 			delay_ms(50);			//等待稳定
-	
+			
 /**************硬件模块初始化*********************/
 //			McNamara_Init();		//麦克纳母轮驱动（4路驱动	）	PB(12,13,14,15)PD(8,9,10,11 + 12,13,14,15)
 			MOTOR_Config_Init();			//电机初始化							TIM4	PB12	PB13	D8 D9 D10 D11
 //			blance_Usart6_Init();			//6轴传感器串口模块			usart6	PG9	PG14									//发送命令可用于z轴清零
-			blance_6axle_Usart6_Init();	//通常之和3轴模块初始化函数选用一个（usart6资源冲突）
+//			blance_6axle_Usart6_Init();	//通常之和3轴模块初始化函数选用一个（usart6资源冲突）
+			DMA_6axle_Usart6_Config();
+			DMA_6axle_usart6RX_Init();	//DMA接收数据	DMA中断处理数据
 //			QMCGY273_Init();					//iic通信罗盘传感器			模拟iic见基本环境初始化
 //			compassGY273Init();				//iic罗盘								模拟IIC总线
 			Digital_Init();						//数字灰度								PA(1.2.4.7) PF(3.5.7.9)
-
+		
+	
 /**************软件功能模块初始化******************/
 			//TIMDataCollect_IRQ_Init(u16 arr,u16 psc);				//定时更新数据库数据
 
 	
 /***************逻辑部分**********************/
-	
+
 	delay_ms(500);	//等待稳定
 	while(1){
-		delay_ms(300);
-		
-		
-/***************逻辑部分结束******************/
+		delay_ms(500);
 
-		
+//		car_TurnToAngle(getStaticAngle(travel_Way[i] , travel_Way[1+i]));delay_ms(500);
+//		Set_Motor(20,20);
+//		delay_ms(500);
+//		i++;
+/***************逻辑部分结束******************/
 
 
 /******************测试代码*************************/
@@ -63,12 +67,12 @@ int main(void)
 //		get_balance_Angle();		//更新数据 working_Blance_Angle_X、working_Blance_Angle_Y
 		
 		
-		/*****测试2 通过串口6获得小车三个姿态角度值	取值0~360*********/
-		printf("%d\t",working_Blance_Angle_X);
-		printf("%d\t",working_Blance_Angle_Y);
-		printf("%d\n",working_Blance_Angle_Z);
-		get_balance_6axle_Angle();		//更新数据 working_Blance_Angle_X、Y and Z
-		
+			/*****测试2 通过串口6获得小车三个姿态角度值	取值0~360*********/
+//		printf("%d\t",working_Blance_Angle_X);
+//		printf("%d\t",working_Blance_Angle_Y);
+//		printf("%d\n",working_Blance_Angle_Z);
+//		//get_balance_6axle_Angle();		//更新数据 working_Blance_Angle_X、Y and Z
+//		
 		
 		/*****测试3                  *********/
 		

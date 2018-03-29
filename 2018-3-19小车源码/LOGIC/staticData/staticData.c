@@ -16,8 +16,8 @@
 u16 getStaticAngle(u16 space,u16 nextSpace){
 	u8 i;
 	for(i=0;i<5;i++){
-		if(nextSpace==nextNode[space][i]){
-			return nextAngle[space][i];
+		if(nextSpace==nextNode[space-1][i]){
+			return nextAngle[space-1][i];
 		}
 	}
 	return 0;//出现问题才会返回0

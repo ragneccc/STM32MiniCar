@@ -12,7 +12,11 @@
 **最新更改时间：2018年3月20日21:17:02
 ***********************************************************************/
 void car_Straight_Line(){
-	Set_Motor(working_v,working_v+static_FalsePWM);
+	//Set_Motor(working_v,working_v+static_FalsePWM);
+		if(DI(4)==1&&DI(5)==1){Set_Motor(60,50);}//1时为灰度亮
+		 else if(DI(3)==1||DI(4)==1){Set_Motor(40,55);}//向右微调
+		 else if(DI(6)==1||DI(5)==1){Set_Motor(50,40);}//向左微调
+		 else {Set_Motor(53,45);}	
 }
 
 
@@ -45,14 +49,16 @@ void car_TurnToAngle(u16 goal_Angle)
 	}
 	while(1)			//扫描车是否转弯完毕
 	{
-			if(cos((goal_Angle-working_Angle)/57.3)>cos(5/57.3))	//角度正确
+			if(ture_Angle(goal_Angle))	//角度正确
 			{
 					Set_Motor(0,0);
+				
+					delay_ms(200);
 					break;
+					
 			}
 			else												//角度不正确,继续扫描
 			{
-					delay_us(50);	//词句不知道有没有用
 					get_balance_6axle_Angle();	//要确保定时器中断定时更新角度值
 			}
 			//可在这里添加判断条件时间过长跳出函数（产生：迷路，错误，bug）
@@ -73,7 +79,7 @@ void car_TurnToAngle(u16 goal_Angle)
 ***********************************************************************/
 u8 ture_Angle(u16 goal_Angle)
 {
-	if(cos((goal_Angle-working_Angle)/57.3)>cos(5/57.3))
+	if(cos((goal_Angle-working_Blance_Angle_Z)/57.3)>cos(static_FalseAngle/57.3))
 	{
 			return 1;
 	}

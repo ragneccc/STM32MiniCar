@@ -32,14 +32,14 @@
 
 //电机占空比偏差 常量
 #define static_FalsePWM					0			//两个电机转速相同时PWM波 占空比参数的 差值
-#define static_TurnV						0
+#define static_TurnV						30
 #define static_FalseAngle  			10		//测的角度与实际上下偏差多少认为完成
 
 
 /***************************以下为地图文件********************************/
 //预设行走路线	//更改
 static const u16 travel_Way[150]={
-							1,3,5
+									1,32,6,34,35,15,35
 								};
 //地图1
 static const u16 nextAngle[60][5] = {

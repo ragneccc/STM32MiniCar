@@ -15,8 +15,7 @@ void MOTOR_Config_Init()
 {
 	MOTOR_Pwm_Config();
 	MOTOR_Direct_Config();  
-	TIM_SetCompare2(TIM4,0);TIM_SetCompare1(TIM4,0);		//ƒ¨»œ
-	//TIM_SetCompare2(TIM4,fabs(50));TIM_SetCompare1(TIM4,40); ≤‚ ‘”√
+	TIM_SetCompare2(TIM4,0);TIM_SetCompare1(TIM4,0);		//ƒ¨»œjæ≤÷π
 }
 
 /*********************************************************************
