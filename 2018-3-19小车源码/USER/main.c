@@ -17,7 +17,7 @@
 #include "workingData.h"				//动态数据表格
 #include "carBaseMoves.h"				//小车的一些基本运动
 #include "letsGO.h"							//逻辑dog
-#include "status.h"						//状态
+#include "status.h"						//状态检测
 
 /*==============头文件引用尽量不动=========================*/
 
@@ -33,7 +33,6 @@ int main(void)
 					NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);	//中断优先级分组
 					uart_init(115200);	//串口1初始化									PA9		PA10
 					IICInit();					//IIC初始化函数								PB8		PB9
-					LCD_1602_6IO_Init();														//PE（8，9，10，11，12，13）
 	
 	
 					delay_ms(50);			//等待稳定		
@@ -46,6 +45,7 @@ int main(void)
 //					DMA_6axle_usart6RX_Init();	//DMA接收数据	DMA中断处理数据
 //					QMCGY273_Init();					//iic通信罗盘传感器			模拟iic见基本环境初始化
 //					compassGY273Init();				//iic罗盘								模拟IIC总线
+					LCD_1602_6IO_Init();														//PE（8，9，10，11，12，13）
 					Digital_Init();						//数字灰度								PA(1.2.4.7) PF(3.5.7.9)
 				
 
@@ -64,9 +64,7 @@ int main(void)
 /***************逻辑部分结束******************/
 
 
-	
-		
-		
+
 
 /******************测试代码*************************/
 
@@ -98,7 +96,7 @@ int main(void)
 //		get_balance_6axle_Angle();
 
 
-			/*****测试5 LCD1602_1602显示角度*********///3轴
+			/*****测试5 LCD1602_1602显示角度*********///6轴
 //		Show_Achar(1,1,'X');
 //		Show_Achar(1,10,'Y');
 //		Show_Achar(2,1,'Z');

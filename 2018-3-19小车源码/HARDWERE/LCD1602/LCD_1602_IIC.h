@@ -6,9 +6,10 @@
 #include "delay.h"
 
 
+void LCD_1602_IIC_Init(void);
 
-void PCF8574_IIC_send(u8 add,char Achar);
-void try1(void);
+void LCD_1602_IIC_Send_Byte(u8 RS,u8 achar);
+
 #endif
 
 
