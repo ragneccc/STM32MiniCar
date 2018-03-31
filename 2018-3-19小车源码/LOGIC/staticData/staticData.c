@@ -26,3 +26,4 @@ u16 getStaticAngle(u16 space,u16 nextSpace){
 
 
 
+

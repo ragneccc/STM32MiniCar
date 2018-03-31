@@ -56,7 +56,7 @@ void DMA_6axle_Usart6_Config(void)
   /* 配置 DMA Stream */
   DMA_InitStructure.DMA_Channel = DMA_Channel_5;  //通道选择usart6RX
   DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)&USART6->DR;//DMA外设地址
-  DMA_InitStructure.DMA_Memory0BaseAddr = (u32)buf;//存储器地址
+  DMA_InitStructure.DMA_Memory0BaseAddr = (u32)&buf;//存储器地址
   DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;//外设模式到存储器
   DMA_InitStructure.DMA_BufferSize = 33;//数据传输量 
   DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;//外设非增量模式

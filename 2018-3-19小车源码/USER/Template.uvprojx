@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\FWLIB\inc;..\HARDWERE\motor;..\HARDWERE\McNamara_motor;..\HARDWERE\compassGY273;..\HARDWERE\myIIC;..\HARDWERE\Gray_8;..\LOGIC\staticData;..\LOGIC\workingData;..\HARDWERE\carBaseMoves;..\LOGIC\TIMDataCollect;..\HARDWERE\blance_usart6;..\HARDWERE\LCD1602;..\HARDWERE\blance_6axle_usart6;..\HARDWERE\DMA</IncludePath>
+              <IncludePath>..\CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\FWLIB\inc;..\HARDWERE\motor;..\HARDWERE\McNamara_motor;..\HARDWERE\compassGY273;..\HARDWERE\myIIC;..\HARDWERE\Gray_8;..\LOGIC\staticData;..\LOGIC\workingData;..\LOGIC\TIMDataCollect;..\HARDWERE\blance_usart6;..\HARDWERE\LCD1602;..\HARDWERE\blance_6axle_usart6;..\HARDWERE\DMA;..\LOGIC\letsGO;..\LOGIC\status;..\LOGIC\carBaseMoves;..\HARDWERE\LCD_1602_6IO</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -644,11 +644,6 @@
               <FilePath>..\HARDWERE\Gray_8\gray.c</FilePath>
             </File>
             <File>
-              <FileName>carBaseMoves.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWERE\carBaseMoves\carBaseMoves.c</FilePath>
-            </File>
-            <File>
               <FileName>blance_Usart6.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWERE\blance_usart6\blance_Usart6.c</FilePath>
@@ -673,6 +668,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWERE\DMA\DMA.c</FilePath>
             </File>
+            <File>
+              <FileName>LCD_1602_6IO.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWERE\LCD_1602_6IO\LCD_1602_6IO.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -692,6 +692,21 @@
               <FileName>TIMDataCollect.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\LOGIC\TIMDataCollect\TIMDataCollect.c</FilePath>
+            </File>
+            <File>
+              <FileName>letsGO.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LOGIC\letsGO\letsGO.c</FilePath>
+            </File>
+            <File>
+              <FileName>status.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LOGIC\status\status.c</FilePath>
+            </File>
+            <File>
+              <FileName>carBaseMoves.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LOGIC\carBaseMoves\carBaseMoves.c</FilePath>
             </File>
           </Files>
         </Group>
